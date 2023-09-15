@@ -66,16 +66,28 @@ https://documenter.getpostman.com/view/12625300/2s9YC7RWFv
 
 ## Thoughts
 
-1. Scalability
-   i. If the file to be processed is exceptionally large, and considering browser time limits could cause issues with processing, it's advisable to first save the file on the backend. Then, you can queue it for processing via a background job. This way, you can promptly notify the user that their file has been successfully submitted, and they will receive an email notification when the processing is complete.
-   ii. I would implement a check to validate the uniqueness of the Emp_ID to prevent the addition of the same employee multiple times.
-   iii. To update employee records, I would create an endpoint that allows updates via a CSV file. This endpoint should ensure that it only updates records for existing employees and modifies relevant fields when changes are detected.
-   iv. hosting the application in a cloud service to allow for automated change reflection and auto scaling of resources
-   v. Utilizing Redis to cache responses from the "get all employees" and "get employee by id" endpoints for performance enhancement.
+## Thoughts
 
-2. Security
-   i. I’d implement Authentication and Authorization for Admin and Staff, then a middleware/permission group to enforce it
-   ii. Running 2FA (2 factor authentication) just to protect from breach.
-   iii. Storing keys and other sensitive data securely or encrypted
-   iv. Using a CDN like cloudflare to protect against DDoS attack and enhanced loading time.
-   viii. Running rate limiting
+### Scalability
+
+1. **Large File Processing**: For processing exceptionally large files, I'd consider saving them on the backend and queuing them for background processing job. This approach ensures timely user notifications and email notifications upon completion.
+
+2. **Uniqueness Validation**: I'd implement a validation check to ensure the uniqueness of employee IDs (Emp_ID) to prevent duplicate entries.
+
+3. **Employee Record Updates**: I'd create an endpoint to update employee records via a CSV file. This endpoint should only modify existing employee data and relevant fields.
+
+4. **Cloud Hosting**: I'd explore cloud hosting for automated scaling and resource management, enhancing performance and availability.
+
+5. **Caching with Redis**: I'd utilize Redis to cache responses from the "get all employees" and "get employee by id" endpoints for performance enhancement by reducing database queries.
+
+### Security
+
+1. **Authentication and Authorization**: I’d implement Authentication and Authorization for Admin and Staff, then a middleware/permission group to enforce it
+
+2. **Two-Factor Authentication (2FA)**: I'd enhance security with 2FA to protect against breaches.
+
+3. **Secure Data Handling**: I'd prioritize secure storage and encryption of sensitive data.
+
+4. **CDN for Protection**: Use a CDN like Cloudflare to safeguard against DDoS attacks and enhance loading times.
+
+5. **Rate Limiting**: Implement rate limiting to prevent abuse and unauthorized access.
